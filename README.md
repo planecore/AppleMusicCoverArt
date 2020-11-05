@@ -14,7 +14,7 @@ Album Art Creator is an app that takes your input and sends out an output album 
 
 ### How to use?
 
-Go to the [website](https://planecore.github.com/AppleMusicCoverArt).
+Go to the [website](https://apple-music-cover.vercel.app).
 
 **Where's the Windows release?**
 
