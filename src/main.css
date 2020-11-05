@@ -1,0 +1,342 @@
+/* Copyrighted by 0neGuyDev */
+
+:root {
+	--bg: white;
+	--sizefactor: 1;
+	--topinset: 50px;
+	--uiheight: 60px;
+	--textcolor: black;
+	--bottominset: 100px;
+	--shadowamount: 40px;
+	--artbg: url("backgrounds/1.png");
+	--activecolor: rgba(100,100,100,0.4);
+	--inactivecolor: rgba(100,100,100,0.1);
+	--artsize: calc(265px * var(--sizefactor));
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: rgb(100,100,100);
+		--textcolor: rgb(200,200,200);
+		--activecolor: rgba(220,220,220,0.4);
+		--inactivecolor: rgba(220,220,220,0.1);
+	}
+	
+	#generating #icon {
+		filter: invert(1);
+	}
+}
+
+html {
+	touch-action: manipulation;
+}
+
+body {
+	margin: 0px;
+	font-weight: 700;
+	font-family: SFPro;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+::-webkit-scrollbar { 
+	display: none; 
+}
+
+#art, .button, .input, .box {
+	-webkit-app-region: none;
+}
+
+#artDiv {
+	cursor:default;
+	margin: 0 auto;
+	overflow: auto;
+	user-select: none;
+	position: relative;
+	border-radius: 20px;
+	width: var(--artsize);
+	height: var(--artsize);
+	margin-top: var(--topinset);
+	margin-bottom: var(--bottominset);
+	box-shadow: 0px 5px 15px rgba(0,0,0,0.2);
+	transition: 0.3s transform ease-in-out, 0.3s opacity ease-in-out, 0.3s box-shadow ease-in-out;
+}
+
+#artDiv:active {
+	transform:scale(0.99) !important;
+}
+
+#artDiv:hover {
+	transform: scale(1.01) !important;
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+}
+
+#art {
+	cursor: pointer;
+	user-select:none;
+	width: var(--artsize);
+	-ms-user-select: none;
+	-moz-user-select: none;
+	height: var(--artsize);
+	background: var(--artbg);
+	-webkit-user-select: none;
+	background-position: center;
+	transition: 0.3s background ease-in-out, 0.3s filter ease-in-out;
+	background-size: cover !important; /* I actually have no clue where the fuck this gets overwritten and why tf it's neccesarry, but it is. */
+}
+
+#artShadow {
+	z-index: -1;
+	opacity: 0.8;
+	position: absolute;
+	transform: scale(0.9);
+	width: var(--artsize);
+	height: var(--artsize);
+	background-size: cover;
+	background-position: center;
+	background-image: var(--artbg);
+	top:calc(var(--topinset) + 30px);
+	filter: blur(var(--shadowamount));
+	margin-left: calc(50vw - var(--artsize)/2);
+	transition: 0.3s filter ease-in-out, 0.3s opacity ease-in-out;
+}
+
+.input, .button, .box {
+	width: 80vw;
+	height: 60px;
+	margin: 0 auto;
+	margin-top: 20px;
+	max-width: 1000px;
+	margin-bottom: 20px;
+	border-radius: 10px;
+	color: var(--textcolor);
+	background: var(--inactivecolor);
+	border: 5px solid var(--inactivecolor);
+	transition: 0.3s transform ease-in-out, 0.3s opacity ease-in-out, 0.3s border ease-in-out, 0.3s box-shadow ease-in-out, 0.3s background ease-in-out;
+}
+
+.toggle {
+	top: -50px;
+	left: 250px;
+	width: 30px;
+	height: 30px;
+	font-weight: 700;
+	border-radius:5px;
+	line-height: 30px;
+	color:transparent;
+	text-align: center;
+	position: relative;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	background: transparent;
+	-webkit-user-select: none;
+	transition: 0.3s color ease-in-out;
+	border: 5px solid var(--activecolor);
+}
+
+.toggle.toggled {
+	color: var(--activecolor);
+}
+
+.box {
+	height: 40vw;
+	display: flex;
+	display: flex;
+	flex-wrap: wrap;
+	overflow: scroll;
+	user-select:none;
+	max-height: 300px;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	justify-content: space-evenly;
+	scroll-snap-type: y mandatory;
+}
+
+.box .image {
+	margin: 5vw;
+	width: 30vw;
+	height: 30vw;
+	cursor: pointer;
+	user-select:none;
+	border-radius: 5%;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	background-size: contain;
+	-webkit-user-select: none;
+	scroll-snap-align: center;
+	background-position: center;
+	background-repeat: no-repeat;
+	max-width: calc(300px / 2 + 19px);
+	max-height: calc(300px / 2 + 19px);
+	background-color: var(--inactivecolor);
+	box-shadow: 0px 5px 10px rgba(0,0,0,0.2);
+	transition: 0.3s transform ease-in-out, 0.3s background ease-in-out, 0.3s opacity ease-in-out;
+}
+
+.box .image:active {
+	transform: scale(0.90);
+}
+
+.box .image.full {
+	width: 100%;
+	max-width: none;
+	line-height: 30vw;
+	text-align: center;
+}
+
+.full:active {
+	background: var(--activecolor);
+}
+
+.button {
+	cursor:pointer;
+	user-select:none;
+	text-align: center;
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	line-height: var(--uiheight);
+	background: var(--inactivecolor);
+}
+
+.button:active {
+	border: 5px solid var(--activecolor);
+}
+
+.button.bottom {
+	bottom: 20px;
+	position: fixed;
+	left: calc(50vw - 80vw / 2);
+}
+
+.button:active {
+	opacity: 1.0;
+	transform: scale(0.95);
+	background: var(--activecolor);
+	box-shadow: 0px 0px 5px var(--activecolor);
+}
+
+.button:hover {
+	opacity: 0.8;
+}
+
+.input input {
+	width: 90%;
+	border:none;
+	height: 100%;
+	padding: 0px;
+	outline: none;
+	font-size: 20px;
+	background: none;
+	font-weight: 700;
+	padding-left: 25px;
+	font-family: SFPro;
+	position: relative;
+	-moz-appearance: none;
+	color: var(--textcolor);
+	-webkit-appearance: none;
+	transition: 0.1s left ease-in-out;
+}
+
+.input:focus-within {
+	border: 5px solid var(--activecolor);
+	box-shadow: 0px 0px 5px var(--activecolor);
+}
+
+#bigTitle, #subTitle, #subText, #appleLogo {
+	color: white;
+	position: absolute;
+}
+
+#bigTitle {
+	position: absolute;
+	top: calc(55px * var(--sizefactor));
+	left: calc(25px * var(--sizefactor));
+	font-size: calc(40px * var(--sizefactor));
+}
+
+#subTitle {
+	font-weight: 300;
+	top:calc(95px * var(--sizefactor));
+	left: calc(25px * var(--sizefactor));
+	font-size: calc(40px * var(--sizefactor));
+}
+
+#bigTitle, #subTitle, #subText {
+	width: 90%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+#subText {
+	font-weight: 500;
+	top: calc(230px * var(--sizefactor));
+	left: calc(25px * var(--sizefactor));
+	font-size: calc(12px * var(--sizefactor));
+}
+
+#appleLogo {
+	filter:invert(1);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-image: url(icons/appleMusic.svg);
+	top: calc(27px * var(--sizefactor));
+	left: calc(25px * var(--sizefactor));
+	width: calc(65px * var(--sizefactor));
+	height: calc(25px * var(--sizefactor));
+	transition: 0.3s opacity ease-in-out, 0.3s transform ease-in-out, 0.3s left ease-in-out;
+}
+
+#art img {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
+canvas {
+	display: none;
+}
+
+#drag {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: -1;
+	position: fixed;
+	-webkit-app-region: drag;
+	transition: 0.3s background ease-in-out;
+}
+
+#generating {
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0.0;
+	position: fixed;
+	margin-top: 40vh;
+	pointer-events: none;
+	transform: scale(0.9);
+	transition: 0.3s transform ease-in-out, 0.3s opacity ease-in-out;
+}
+
+#generating #icon {
+	width: 124px;
+	height: 124px;
+	margin: 0 auto;
+	background: url("icons/image.svg");
+	transition: 0.5s transform ease-in-out, 0.3s background ease-in-out;
+}
+
+#generating #text {
+	text-align: center;
+	color: var(--textcolor);
+	transition: 0.3s color ease-in-out;
+}
+
+#gradient {
+	width: var(--artsize);
+	height: var(--artsize);
+}

@@ -1,0 +1,56 @@
+<!-- Copyrighted by 0neGuyDev -->
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Album Art Creator</title>
+		<meta name="robots" content="index, follow">
+		<meta name="HandheldFriendly" content="true" />
+    <link rel="icon" href="icons/favicon.ico"/>
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<link rel="stylesheet" type="text/css" href="fonts/SFPro.css">
+		<link rel="stylesheet" type="text/css" href="fonts/SFMono.css">
+		<link rel="stylesheet" type="text/css" href="fonts/SFCompact.css">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0, user-scalable=0">
+    <script src="https://unpkg.com/dom-to-image@2.6.0/dist/dom-to-image.min.js"></script>
+    <script src="https://unpkg.com/file-saver@2.0.2/dist/FileSaver.min.js"></script>
+	</head>
+	<body>
+		<div id="drag"></div>
+		<div id="artShadow"></div>
+		<div id="artDiv">
+			<div id="art" onclick="chooseImage()">
+				<div id="gradient"></div>
+				<div id="appleLogo"></div>
+				<div id="bigTitle">Big Title</div>
+				<div id="subTitle">Sub Title</div>
+				<div id="subText">Sub Text</div>
+			</div>
+		</div>
+		
+		<div class="box" id="backgrounds">
+		</div>
+		<div class="input">
+			<input disabled value="Show Apple Logo"><div onclick="toggleLogo()" id="logoToggle" class="toggle toggled">X</div></input>
+		</div>
+		<div class="input">
+			<input id="bigTitleInput" placeholder="Big Title..." value="Big Title">
+		</div>
+		<div class="input">
+			<input id="subTitleInput" placeholder="Sub Title..." value="Sub Title">
+		</div>
+		<div class="input">
+			<input id="subTextInput" placeholder="Sub Text..." value="Sub Text">
+		</div>
+		
+		<div class="button" id="generate" onclick="generate()">Generate</div>
+		
+		<div id="generating">
+			<div id="icon"></div>
+			<div id="text">Generating Image!</div>
+		</div>
+		
+    <input id="file-input" type="file" name="name" accept="image/png, image/jpeg, image/jpg" onchange="" style="display: none;" />
+		<script src="main.js" charset="utf-8"></script>
+	</body>
+</html>
